@@ -1,5 +1,5 @@
 import { use } from "react";
-import { AuthContext } from "../Provider/AuthProvider";
+// import { AuthContext } from "../Provider/AuthProvider";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { BiCalendar, BiCheckSquare, BiSolidBarChartAlt2 } from "react-icons/bi";
 import { FaUserSecret } from "react-icons/fa";
@@ -7,7 +7,7 @@ import { CiSettings } from "react-icons/ci";
 import { FiHelpCircle, FiLogOut } from "react-icons/fi";
 
 const Sidebar = () => {
-  const { logOutUser } = use(AuthContext);
+//   const { logOutUser } = use(AuthContext);
   const menuItems = [
     { icon: <LuLayoutDashboard size={20} />, label: "Dashboard", active: true },
     { icon: <BiCheckSquare size={20} />, label: "Tasks", badge: "12+" },
@@ -16,7 +16,7 @@ const Sidebar = () => {
     { icon: <FaUserSecret size={20} />, label: "Team" },
   ];
   const handleLogout = () => {
-    logOutUser();
+    // logOutUser();
     alert("Logged out successfully");
   };
 

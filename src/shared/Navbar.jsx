@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
 import { RiNotification3Line } from "react-icons/ri";
 import { FiSearch } from "react-icons/fi";
+import { Link } from "react-router";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { name: "Home", href: "#" },
+    { name: "Home", href: "/" },
     { name: "Courses", href: "#" },
-    { name: "Mentors", href: "#" },
+    { name: "Dashboard", href: "/dashboard" },
     { name: "About Us", href: "#" },
   ];
 
@@ -50,9 +51,9 @@ const Navbar = () => {
               <span className="absolute -top-1 -right-1 w-2 h-2 bg-orange-500 rounded-full"></span>
             </button>
 
-            <button className="px-6 py-2.5 bg-gray-900 text-white font-semibold rounded-full hover:bg-emerald-500 hover:shadow-lg hover:shadow-emerald-200 transition-all duration-300 active:scale-95">
+            <Link to="/login" className="px-6 py-2.5 bg-gray-900 text-white font-semibold rounded-full hover:bg-emerald-500 hover:shadow-lg hover:shadow-emerald-200 transition-all duration-300 active:scale-95">
               Login
-            </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -82,9 +83,9 @@ const Navbar = () => {
             </a>
           ))}
           <div className="pt-4 border-t border-gray-100">
-            <button className="w-full py-3 bg-emerald-500 text-white font-bold rounded-xl">
+            <Link to="/login" className="w-full py-3 bg-emerald-500 text-white font-bold rounded-xl">
               Login
-            </button>
+            </Link>
           </div>
         </div>
       </div>

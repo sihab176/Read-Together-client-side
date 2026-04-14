@@ -3,6 +3,8 @@ import RootLayout from "../components/layout/RootLayout/RootLayout";
 import HomePage from "../Pages/HomePages/HomePage";
 import LoginPage from "../Pages/LoginPage/LoginPage";
 import RegisterPage from "../Pages/RegisterPage/RegisterPage";
+import DashboardLayout from "../components/layout/DashboardLayout/DashboardLayout";
+import AddBookForm from "../components/AddBookForm";
 
 export const router = createBrowserRouter([
   {
@@ -13,8 +15,18 @@ export const router = createBrowserRouter([
         index: true,
         Component: HomePage,
       },
-      { path: "login", Component: LoginPage },
-      { path: "register", Component: RegisterPage },
+      { path: "/login", Component: LoginPage },
+      { path: "/register", Component: RegisterPage },
+    ],
+  },
+  {
+    path: "/dashboard",
+    Component: DashboardLayout,
+    children: [
+      {
+        index: true,
+        Component: AddBookForm,
+      },
     ],
   },
 ]);

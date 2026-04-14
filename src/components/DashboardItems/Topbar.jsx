@@ -3,7 +3,7 @@ import { BsMailbox } from "react-icons/bs";
 
 const Topbar = () => {
   return (
-    <header className="flex items-center justify-between w-full mb-2 rounded-2xl  bg-gray-100 shadow-sm px-10 py-4 ">
+    <header className="flex items-center justify-between w-full mb-2 rounded-2xl  bg-gray-100 shadow-sm px-10 py-4 sticky top-0 z-10">
       {/* 1. Search Bar Section */}
       <div className="relative w-full max-w-md group">
         <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
