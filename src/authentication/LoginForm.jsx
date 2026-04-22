@@ -4,11 +4,13 @@ import { LuEye, LuEyeOff } from "react-icons/lu";
 import { AuthContext } from "../Provider/AuthProvider";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
+import GoogleLoing from "../shared/GoogleLoing";
 
 const LoginForm = () => {
-  const { loginUser } = use(AuthContext);
+  const { loginUser ,user } = use(AuthContext);
   const [openPassword, setOpenPassword] = useState(false);
   const navigate = useNavigate("/");
+  console.log("user",user)
 
   const {
     register,
@@ -133,6 +135,7 @@ const LoginForm = () => {
               Log In
             </button>
           </form>
+          <GoogleLoing />
         </div>
       </div>
     </div>

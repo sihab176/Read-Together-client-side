@@ -5,6 +5,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { useNavigate } from "react-router";
 import useAxios from "../hooks/useAxios";
 import Swal from "sweetalert2";
+import GoogleLoing from "../shared/GoogleLoing";
 
 const RegisterForm = () => {
   const [openPassword, setOpenPassword] = useState(false);
@@ -244,6 +245,7 @@ const RegisterForm = () => {
               Submit
             </button>
           </form>
+          <GoogleLoing />
         </div>
       </div>
     </div>
