@@ -1,18 +1,61 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { useForm } from "react-hook-form";
 import { LuEye, LuEyeOff } from "react-icons/lu";
+import { AuthContext } from "../Provider/AuthProvider";
+import { useNavigate } from "react-router";
+import useAxios from "../hooks/useAxios";
+import Swal from "sweetalert2";
 
 const RegisterForm = () => {
   const [openPassword, setOpenPassword] = useState(false);
+  const { createUser, googleLogin, updateUser, setUser } = use(AuthContext);
+  const navigate = useNavigate();
+  const axiosInstance = useAxios();
+
+  // TODO:__________implement register functionality_________
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
-
-  const onSubmit = (data) => {
+  // TODO_______________SUBMI THE FORM DATA ___________________
+  const onSubmit = async (data) => {
     console.log(data);
+    //!CREATE USER IN FIREBASE=========>
+    createUser(data.email, data.password)
+      .then(async (result) => {
+        const userData = {
+          email: data.email,
+          displayName: data.fullName,
+          role: "user",
+          phoneNumber: data.phoneNumber,
+          createdAt: new Date(),
+          lastLoginAt: new Date(),
+        };
+        const res = await axiosInstance.post("/users", userData);
+        console.log("response--->", res);
+        //! UPDATE USER DISPLAY NAME
+        updateUser({
+          displayName: data.fullName,
+        })
+          .then(() => {
+            navigate("/");
+            Swal.fire({
+              icon: "success",
+              title: "welcome to Read Together ",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+        console.log("resule", result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const password = watch("password");

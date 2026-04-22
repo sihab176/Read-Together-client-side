@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { useForm } from "react-hook-form";
 import { LuEye, LuEyeOff } from "react-icons/lu";
+import { AuthContext } from "../Provider/AuthProvider";
+import { useNavigate } from "react-router";
+import Swal from "sweetalert2";
 
 const LoginForm = () => {
+  const { loginUser } = use(AuthContext);
   const [openPassword, setOpenPassword] = useState(false);
+  const navigate = useNavigate("/");
+
   const {
     register,
     handleSubmit,
@@ -13,6 +19,18 @@ const LoginForm = () => {
 
   const onSubmit = (data) => {
     console.log(data);
+    if (data) {
+      loginUser(data.email, data.password).then((res) => {
+        console.log("res", res);
+        navigate(`${location.state ? location.state : "/"}`);
+        Swal.fire({
+          icon: "success",
+          title: "welcome to Read Together ",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
+    }
   };
 
   //   const password = watch("password");
@@ -73,7 +91,10 @@ const LoginForm = () => {
                   placeholder="Password"
                   className="p-2 border w-full border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                <div className="absolute right-2 top-3 " onClick={() => setOpenPassword(!openPassword)}>
+                <div
+                  className="absolute right-2 top-3 "
+                  onClick={() => setOpenPassword(!openPassword)}
+                >
                   {openPassword ? (
                     <LuEye size={20} className="cursor-pointer" />
                   ) : (

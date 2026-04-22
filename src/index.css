@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+/* .primary {
+  @apply bg-gradient-to-r from-emerald-500 to-emerald-600;
+} */
+
+.dashboard-bg  {
+  @apply bg-[#1E5128];
+}
+
+.dashboard-text {
+  @apply text-[#1E5128];
+}
