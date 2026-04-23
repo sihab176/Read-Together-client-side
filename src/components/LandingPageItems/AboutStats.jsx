@@ -34,7 +34,7 @@ const AboutStats = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <section className=" bg-linear-to-b from-gray-50 to-white min-h-screen items-center flex">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Header */}
@@ -58,7 +58,7 @@ const AboutStats = () => {
           {stats.map((stat) => (
             <div
               key={stat.id}
-              className="group p-6 bg-white rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-gray-100 hover:-translate-y-2 text-center"
+              className="group lg:w-[300px] w-full p-6 bg-white rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-gray-100 hover:-translate-y-2 text-center"
             >
               
               {/* 🔥 Improved Icon Design */}

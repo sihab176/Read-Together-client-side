@@ -39,7 +39,7 @@ const Hero = () => {
           </div>
 
           {/* Heading */}
-          <h1 className="text-5xl lg:text-7xl font-bold text-gray-900 leading-tight">
+          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.05] tracking-tight">
             Smart Learning <br />
             Deeper & More <br />
             <span className="text-orange-500">-Amazing</span>{" "}
