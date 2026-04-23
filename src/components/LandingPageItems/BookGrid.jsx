@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BookCard from "./BookCard";
+import useAxios from "../../hooks/useAxios";
 
 const books = [
   {
@@ -101,11 +102,25 @@ const books = [
 ];
 
 const BookGrid = () => {
+  const [booksData, setBooksData] = useState([]);
+  const axiosInstance = useAxios();
+  useEffect(() => {
+    const fetchBooks = async () => {
+      const response = await axiosInstance.get("/books");
+      // console.log("response", response);
+      setBooksData(response.data);
+    };
+    fetchBooks();
+  }, []);
+
+  // console.log("book", booksData);
+
   return (
     <div className=" min-h-screen p-10 ">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {books.map((book) => (
-          <BookCard key={book.id} book={book} />
+        {booksData?.map((book) => (
+          <BookCard key={book._id} book={book} />
+          // <div key={book._id}>{book.title}</div>
         ))}
       </div>
     </div>
