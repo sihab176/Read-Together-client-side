@@ -10,6 +10,7 @@ import {
   FaImages,
 } from "react-icons/fa";
 import useAxios from "../hooks/useAxios";
+import useAuth from "../hooks/useAuth";
 
 const AddBookForm = () => {
   const {
@@ -19,10 +20,11 @@ const AddBookForm = () => {
     formState: { errors },
   } = useForm();
   const [files, setFiles] = useState([]);
+  const user = useAuth();
   const imageHostingkey = "1b9dc072b95ad90044546f449af37a13";
   const axiosInstance = useAxios();
 
-  console.log(files);
+  console.log("user", user.user);
 
   const handleFileChange = (index, event) => {
     const file = event.target.files[0];
@@ -61,7 +63,11 @@ const AddBookForm = () => {
         }
       }
       data.images = uploadedImages;
-      // console.log("Final data:", data);
+      data.seller = {
+        email: user.user?.email,
+        name: user.user?.displayName,
+      };
+      data.status = "pending";
       const response = await axiosInstance.post("/books", data);
       console.log("Response:", response);
       if (response) {
@@ -386,37 +392,55 @@ const AddBookForm = () => {
               <FaMapMarkerAlt className="dashboard-text" /> Location
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <input
-                {...register("location.division", {
-                  required: "Division required",
-                })}
-                className="input-style"
-              />
-              {errors.location?.division && (
-                <p className="text-red-500 text-sm">
-                  {errors.location.division.message}
-                </p>
-              )}
-              <input
-                {...register("location.district", {
-                  required: "District required",
-                })}
-                className="input-style"
-              />
-              {errors.location?.district && (
-                <p className="text-red-500 text-sm">
-                  {errors.location.district.message}
-                </p>
-              )}
-              <input
-                {...register("location.area", { required: "Area required" })}
-                className="input-style"
-              />
-              {errors.location?.area && (
-                <p className="text-red-500 text-sm">
-                  {errors.location.area.message}
-                </p>
-              )}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Division
+                </label>
+                <input
+                  {...register("location.division", {
+                    required: "Division required",
+                  })}
+                  className="input-style"
+                  placeholder="Write Your Division"
+                />
+                {errors.location?.division && (
+                  <p className="text-red-500 text-sm">
+                    {errors.location.division.message}
+                  </p>
+                )}
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  District
+                </label>
+                <input
+                  {...register("location.district", {
+                    required: "District required",
+                  })}
+                  className="input-style"
+                  placeholder="Write Your District"
+                />
+                {errors.location?.district && (
+                  <p className="text-red-500 text-sm">
+                    {errors.location.district.message}
+                  </p>
+                )}
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Area
+                </label>
+                <input
+                  {...register("location.area", { required: "Area required" })}
+                  className="input-style"
+                  placeholder="Write Your Area"
+                />
+                {errors.location?.area && (
+                  <p className="text-red-500 text-sm">
+                    {errors.location.area.message}
+                  </p>
+                )}
+              </div>
             </div>
           </section>
 
