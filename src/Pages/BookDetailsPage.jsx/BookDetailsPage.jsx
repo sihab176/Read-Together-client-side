@@ -240,6 +240,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import useAxios from "../../hooks/useAxios";
 import { BiLocationPlus } from "react-icons/bi";
+import ReviewSection from "../../components/ReviewSection";
 
 const BookCover = ({ book, size = "large" }) => {
   const isLarge = size === "large";
@@ -282,118 +283,123 @@ export default function BookDetailsPage() {
   if (!book) return <p className="text-center mt-10">Loading...</p>;
 
   return (
-    <div className="min-h-screen bg-gray-50 font-serif flex items-center justify-center p-4  ">
-      <div className="bg-white mt-20 shadow-xl w-full max-w-7xl mx-auto flex flex-col lg:flex-row overflow-hidden rounded-lg">
-        {/* Left */}
-        <div className="flex flex-col items-center justify-center bg-gray-100 px-6 py-10 lg:px-10 lg:py-12 lg:min-w-[280px]">
-          <BookCover book={book} size="large" />
-        </div>
-
-        {/* Center */}
-        <div className="flex-1 px-6 py-8 md:px-10 md:py-10 border-r border-gray-200">
-          <h1 className="text-2xl md:text-3xl font-black text-gray-900 leading-tight mb-1">
-            {book.title}
-          </h1>
-
-          <p className="text-xs tracking-widest text-gray-500 uppercase mb-4">
-            by {book.author}
-          </p>
-
-          {/* 🔥 description */}
-          <p className="text-sm italic text-gray-600 mb-4 leading-relaxed border-l-2 border-red-400 pl-3">
-            {book.bookDetails?.conditionDescription}
-          </p>
-
-          {/* 🔥 meta */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-y-4 gap-x-2 text-xs mb-8 border-t border-b border-gray-100 py-4">
-            <div>
-              <span className="text-gray-400 font-semibold uppercase block">
-                Publisher
-              </span>
-              <span className="text-gray-700">
-                {book.bookDetails?.publisher}
-              </span>
-            </div>
-
-            <div>
-              <span className="text-gray-400 font-semibold uppercase block">
-                Pages
-              </span>
-              <span className="text-gray-700">{book.bookDetails?.pages}</span>
-            </div>
-
-            <div>
-              <span className="text-gray-400 font-semibold uppercase block">
-                Edition
-              </span>
-              <span className="text-gray-700">{book.edition}</span>
-            </div>
-
-            <div>
-              <span className="text-gray-400 font-semibold uppercase block">
-                Category
-              </span>
-              <span className="text-gray-700">{book.category}</span>
-            </div>
-
-            <div>
-              <span className="text-gray-400 font-semibold uppercase block">
-                Level
-              </span>
-              <span className="text-gray-700">{book.level}</span>
-            </div>
-
-            <div>
-              <span className="text-gray-400 font-semibold uppercase block">
-                Condition
-              </span>
-              <span className="text-gray-700">
-                {book.bookDetails?.condition}
-              </span>
-            </div>
+    <>
+      <section className="min-h-screen bg-gray-50 font-serif flex items-center justify-center p-4  ">
+        <div className="bg-white mt-20 shadow-xl w-full max-w-7xl mx-auto flex flex-col lg:flex-row overflow-hidden rounded-lg">
+          {/* Left */}
+          <div className="flex flex-col items-center justify-center bg-gray-100 px-6 py-10 lg:px-10 lg:py-12 lg:min-w-[280px]">
+            <BookCover book={book} size="large" />
           </div>
 
-          {/* 🔥 price */}
-          <div className="mb-6">
-            <p className="text-gray-400 line-through text-sm">
-              ৳{book.pricing?.originalPrice}
+          {/* Center */}
+          <div className="flex-1 px-6 py-8 md:px-10 md:py-10 border-r border-gray-200">
+            <h1 className="text-2xl md:text-3xl font-black text-gray-900 leading-tight mb-1">
+              {book.title}
+            </h1>
+
+            <p className="text-xs tracking-widest text-gray-500 uppercase mb-4">
+              by {book.author}
             </p>
-            <p className="text-red-500 text-xl font-bold">
-              ৳{book.pricing?.basePrice}
+
+            {/* 🔥 description */}
+            <p className="text-sm italic text-gray-600 mb-4 leading-relaxed border-l-2 border-red-400 pl-3">
+              {book.bookDetails?.conditionDescription}
             </p>
-          </div>
 
-          {/* 🔥 location */}
-          <p className="text-sm text-gray-500 mb-4 flex items-center gap-1">
-            <span className="text-green-700">
-              <BiLocationPlus />
-            </span>{" "}
-            {book.location?.area}, {book.location?.district},{" "}
-            {book.location?.division}
-          </p>
+            {/* 🔥 meta */}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-y-4 gap-x-2 text-xs mb-8 border-t border-b border-gray-100 py-4">
+              <div>
+                <span className="text-gray-400 font-semibold uppercase block">
+                  Publisher
+                </span>
+                <span className="text-gray-700">
+                  {book.bookDetails?.publisher}
+                </span>
+              </div>
 
-          {/* 🔥 stock */}
-          <p className="text-sm text-green-600">
-            In Stock: {book.inventory?.stock}
-          </p>
+              <div>
+                <span className="text-gray-400 font-semibold uppercase block">
+                  Pages
+                </span>
+                <span className="text-gray-700">{book.bookDetails?.pages}</span>
+              </div>
 
-          {/* 🔥 seller */}
-          <div className="mt-6">
-            <p className="text-xs text-gray-400 uppercase"> Seller</p>
-            <p className="text-sm text-gray-700">{book.seller?.name}</p>
-            {/* <p className="text-xs text-gray-500">{book.seller?.email}</p> */}
-          </div>
-        </div>
+              <div>
+                <span className="text-gray-400 font-semibold uppercase block">
+                  Edition
+                </span>
+                <span className="text-gray-700">{book.edition}</span>
+              </div>
 
-        {/* Right (image thumbnails) */}
-        <div className="flex flex-row lg:flex-col gap-4 px-4 py-6 bg-gray-50 overflow-x-auto lg:overflow-x-hidden min-w-[90px] items-center border-t lg:border-t-0 border-gray-100">
-          {book.images?.map((img, i) => (
-            <div key={i} className="w-14 h-20">
-              <img src={img} className="w-full h-full object-cover rounded" />
+              <div>
+                <span className="text-gray-400 font-semibold uppercase block">
+                  Category
+                </span>
+                <span className="text-gray-700">{book.category}</span>
+              </div>
+
+              <div>
+                <span className="text-gray-400 font-semibold uppercase block">
+                  Level
+                </span>
+                <span className="text-gray-700">{book.level}</span>
+              </div>
+
+              <div>
+                <span className="text-gray-400 font-semibold uppercase block">
+                  Condition
+                </span>
+                <span className="text-gray-700">
+                  {book.bookDetails?.condition}
+                </span>
+              </div>
             </div>
-          ))}
+
+            {/* 🔥 price */}
+            <div className="mb-6">
+              <p className="text-gray-400 line-through text-sm">
+                ৳{book.pricing?.originalPrice}
+              </p>
+              <p className="text-red-500 text-xl font-bold">
+                ৳{book.pricing?.basePrice}
+              </p>
+            </div>
+
+            {/* 🔥 location */}
+            <p className="text-sm text-gray-500 mb-4 flex items-center gap-1">
+              <span className="text-green-700">
+                <BiLocationPlus />
+              </span>{" "}
+              {book.location?.area}, {book.location?.district},{" "}
+              {book.location?.division}
+            </p>
+
+            {/* 🔥 stock */}
+            <p className="text-sm text-green-600">
+              In Stock: {book.inventory?.stock}
+            </p>
+
+            {/* 🔥 seller */}
+            <div className="mt-6">
+              <p className="text-xs text-gray-400 uppercase"> Seller</p>
+              <p className="text-sm text-gray-700">{book.seller?.name}</p>
+              {/* <p className="text-xs text-gray-500">{book.seller?.email}</p> */}
+            </div>
+          </div>
+
+          {/* Right (image thumbnails) */}
+          <div className="flex flex-row lg:flex-col gap-4 px-4 py-6 bg-gray-50 overflow-x-auto lg:overflow-x-hidden min-w-[90px] items-center border-t lg:border-t-0 border-gray-100">
+            {book.images?.map((img, i) => (
+              <div key={i} className="w-14 h-20">
+                <img src={img} className="w-full h-full object-cover rounded" />
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+      <section>
+        <ReviewSection />
+      </section>
+    </>
   );
 }
