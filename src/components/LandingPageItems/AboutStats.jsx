@@ -58,7 +58,7 @@ const AboutStats = () => {
         {/* Title */}
         <h2 className="text-3xl md:text-5xl font-semibold text-gray-900">
           Find your next favorite{" "}
-          <span className="text-green-700 ">read</span>
+          <span className="primary-text">read</span>
         </h2>
 
         {/* Subtitle */}
