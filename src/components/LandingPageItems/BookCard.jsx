@@ -5,7 +5,7 @@ import { Link } from "react-router";
 
 const BookCard = ({ book }) => {
   const [liked, setLiked] = useState({});
-  console.log("book single", book);
+  // console.log("book single", book);
   return (
     <>
       <motion.div

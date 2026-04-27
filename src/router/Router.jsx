@@ -6,6 +6,8 @@ import RegisterPage from "../Pages/RegisterPage/RegisterPage";
 import DashboardLayout from "../components/layout/DashboardLayout/DashboardLayout";
 import AddBookForm from "../components/AddBookForm";
 import BookDetailsPage from "../Pages/BookDetailsPage.jsx/BookDetailsPage";
+import CheckoutPage from "../components/CheckoutPage";
+import PaymentSuccess from "../components/PaymentSuccess";
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +19,8 @@ export const router = createBrowserRouter([
         Component: HomePage,
       },
       { path: "bookDetails/:id", Component: BookDetailsPage },
+      { path: "checkout/:id", Component: CheckoutPage },
+      { path: "success", Component: PaymentSuccess },
       { path: "/login", Component: LoginPage },
       { path: "/register", Component: RegisterPage },
     ],

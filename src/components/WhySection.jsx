@@ -6,6 +6,7 @@ import {
   FaLeaf,
   FaBolt,
 } from "react-icons/fa";
+import PaymentSuccess from "./PaymentSuccess";
 
 const features = [
   {
@@ -48,51 +49,52 @@ const features = [
 
 const WhySection = () => {
   return (
-    <section className="py-20 bg-[#f5f5f3]">
-      <div className="max-w-7xl mx-auto px-4 text-center">
-        
-        {/* Badge */}
-        <div className="inline-block px-4 py-1 text-xs font-medium bg-[#e8dcc7] text-gray-700 rounded-full mb-5">
-          WHY BOOKLOOP
-        </div>
+    <>
+      <section className="py-20 bg-[#f5f5f3]">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          {/* Badge */}
+          <div className="inline-block px-4 py-1 text-xs font-medium bg-[#e8dcc7] text-gray-700 rounded-full mb-5">
+            WHY BOOKLOOP
+          </div>
 
-        {/* Title */}
-        <h2 className="text-3xl md:text-5xl max-w-2xl mx-auto font-semibold text-gray-900 leading-tight">
-          Built for readers,{" "}
-          <span className="primary-text ">made for sharing</span>
-        </h2>
+          {/* Title */}
+          <h2 className="text-3xl md:text-5xl max-w-2xl mx-auto font-semibold text-gray-900 leading-tight">
+            Built for readers,{" "}
+            <span className="primary-text ">made for sharing</span>
+          </h2>
 
-        {/* Cards */}
-        <div className="grid md:grid-cols-3 gap-6 mt-14 text-left">
-          {features.map((item, i) => {
-            const Icon = item.icon;
-            return (
-              <div
-                key={i}
-                className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition duration-300"
-              >
-                {/* Icon */}
+          {/* Cards */}
+          <div className="grid md:grid-cols-3 gap-6 mt-14 text-left">
+            {features.map((item, i) => {
+              const Icon = item.icon;
+              return (
                 <div
-                  className={`w-10 h-10 flex items-center justify-center rounded-xl mb-4 ${item.color}`}
+                  key={i}
+                  className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition duration-300"
                 >
-                  <Icon size={16} />
+                  {/* Icon */}
+                  <div
+                    className={`w-10 h-10 flex items-center justify-center rounded-xl mb-4 ${item.color}`}
+                  >
+                    <Icon size={16} />
+                  </div>
+
+                  {/* Title */}
+                  <h4 className="font-semibold text-gray-800 mb-2">
+                    {item.title}
+                  </h4>
+
+                  {/* Description */}
+                  <p className="text-sm text-gray-500 leading-relaxed">
+                    {item.desc}
+                  </p>
                 </div>
-
-                {/* Title */}
-                <h4 className="font-semibold text-gray-800 mb-2">
-                  {item.title}
-                </h4>
-
-                {/* Description */}
-                <p className="text-sm text-gray-500 leading-relaxed">
-                  {item.desc}
-                </p>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
