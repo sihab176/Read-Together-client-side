@@ -1,15 +1,94 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiHeart, BiMapPin, BiStar } from "react-icons/bi";
 import { Link } from "react-router";
+import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router";
+import useAxios from "../../hooks/useAxios";
+import { FaHeart } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 const BookCard = ({ book }) => {
   const [liked, setLiked] = useState({});
-  // console.log("book single", book);
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const axiosInstance = useAxios();
+  console.log("book single", book);
+  // console.log("user", user.email);
+  useEffect(() => {
+    if (user?.email) {
+      axiosInstance.get(`/wishlist/${user?.email}`).then((res) => {
+        const likedMap = {};
+        res.data.forEach((item) => {
+          likedMap[item.bookId] = true;
+        });
+        setLiked(likedMap);
+      });
+    }
+  }, [user?.email]);
+
+  // console.log("liked", liked);
+  const handleWishlist = async (book) => {
+    if (!user?.email) {
+      navigate("/login");
+      return;
+    }
+    const isliked = liked[book._id];
+    // UI UPDATE FAST
+    setLiked((prev) => ({ ...prev, [book._id]: !isliked }));
+
+    try {
+      if (isliked) {
+        await axiosInstance.delete(`/wishlist/`, {
+          data: {
+            userEmail: user?.email,
+            bookId: book._id,
+          },
+        });
+        setLiked((p) => ({ ...p, [book._id]: false }));
+        toast.success("Book removed from wishlist");
+      } else {
+        await axiosInstance.post(`/wishlist/`, {
+          userEmail: user?.email,
+          bookId: book?._id,
+          bookTitle: book?.title,
+          bookImage: book?.images?.[0],
+          bookPrice: book?.pricing?.basePrice,
+          location: book?.location,
+          author: book?.author,
+        });
+        setLiked((p) => ({ ...p, [book.id]: true }));
+        toast.success("Book added to wishlist ❤️");
+      }
+    } catch (error) {
+      console.log(error);
+      setLiked((prev) => ({ ...prev, [book._id]: isliked }));
+    }
+    // if (isliked) {
+    //   await axiosInstance.delete(`/wishlist/`, {
+    //     data: {
+    //       userEmail: user?.email,
+    //       bookId: book._id,
+    //     },
+    //   });
+    //   setLiked((p) => ({ ...p, [book._id]: false }));
+    // } else {
+    //   await axiosInstance.post(`/wishlist/`, {
+    //     userEmail: user?.email,
+    //     bookId: book?._id,
+    //     bookTitle: book?.title,
+    //     bookImage: book?.images?.[0],
+    //     bookPrice: book?.pricing?.basePrice,
+    //     location: book?.location,
+    //     author: book?.author,
+    //   });
+    //   setLiked((p) => ({ ...p, [book.id]: true }));
+    // }
+  };
   return (
     <>
       <motion.div
-        key={book.id}
+        key={book._id}
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -27,13 +106,22 @@ const BookCard = ({ book }) => {
             className="h-full bg-white p-4 w-auto object-contain drop-shadow-xl group-hover:scale-110 group-hover:-rotate-2 transition-transform duration-700"
           />
           <button
-            onClick={() => setLiked((p) => ({ ...p, [book.id]: !p[book.id] }))}
+            onClick={() => handleWishlist(book)}
             aria-label="Wishlist"
             className="absolute top-4 right-4 w-10 h-10 rounded-full glass shadow-soft flex items-center justify-center hover:scale-110 transition-transform"
           >
-            <BiHeart
-              className={`w-4 h-4 transition-all ${liked[book.id] ? "fill-destructive text-destructive scale-110" : "text-foreground/60"}`}
-            />
+            {/* <BiHeart
+              className={`w-4 h-4 transition-all ${
+                liked[book._id]
+                  ? "fill-red-500 text-red-500 scale-110"
+                  : "text-foreground/60"
+              }`}
+            /> */}
+            {liked[book._id] ? (
+              <FaHeart className="w-4 h-4 text-red-600" />
+            ) : (
+              <BiHeart className="w-4 h-4 text-foreground/60" />
+            )}
           </button>
           <div className="absolute top-4 left-4 px-2.5 py-1 rounded-full bg-card/90 backdrop-blur text-[10px] font-semibold tracking-wide uppercase shadow-soft">
             {book.tag}
