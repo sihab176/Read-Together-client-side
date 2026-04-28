@@ -8,6 +8,9 @@ import AddBookForm from "../components/AddBookForm";
 import BookDetailsPage from "../Pages/BookDetailsPage.jsx/BookDetailsPage";
 import CheckoutPage from "../components/CheckoutPage";
 import PaymentSuccess from "../components/PaymentSuccess";
+import MyOrders from "../Pages/DashBoard/MyOrders";
+import PaymentHistoryPage from "../Pages/DashBoard/PaymentHistoryPage";
+import WishlistPage from "../Pages/DashBoard/WishlistPage";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +35,18 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: AddBookForm,
+      },
+      {
+        path: "my-orders",
+        Component: MyOrders,
+      },
+      {
+        path: "payment-history",
+        Component: PaymentHistoryPage,
+      },
+      {
+        path: "wishlist",
+        Component: WishlistPage,
       },
     ],
   },

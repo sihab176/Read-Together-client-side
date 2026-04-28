@@ -18,7 +18,7 @@ const BookCover = ({ book, size = "large" }) => {
       <img
         src={book.images?.[0]}
         alt={book.title}
-        className="w-full h-full object-cover rounded"
+        className="w-full h-full object-cover rounded border-16 border-white"
       />
     </div>
   );
@@ -157,17 +157,17 @@ export default function BookDetailsPage() {
             </div>
             <button
               onClick={handleBuy}
-              className="gradient-bg py-1 px-3 rounded w-full mt-4"
+              className="gradient-bg cursor-pointer active:scale-95 transition-transform text-white py-1 px-3 rounded w-full mt-4"
             >
               Buy Now
             </button>
           </div>
 
           {/* Right (image thumbnails) */}
-          <div className="flex flex-row lg:flex-col gap-4 px-4 py-6 bg-gray-50 overflow-x-auto lg:overflow-x-hidden min-w-[90px] items-center border-t lg:border-t-0 border-gray-100">
+          <div className="flex flex-row lg:flex-col gap-4 px-4 py-6 bg-gray-100 overflow-x-auto lg:overflow-x-hidden min-w-[90px] items-center border-t lg:border-t-0 border-gray-100">
             {book.images?.map((img, i) => (
-              <div key={i} className="w-14 h-20">
-                <img src={img} className="w-full h-full object-cover rounded" />
+              <div key={i} className="w-16 h-22">
+                <img src={img} className="w-full h-full object-cover rounded border-6 border-white cursor-pointer" />
               </div>
             ))}
           </div>

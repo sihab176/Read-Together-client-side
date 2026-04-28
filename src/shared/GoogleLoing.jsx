@@ -34,7 +34,7 @@ const GoogleLoing = () => {
       });
   };
   return (
-    <div>
+    <div className="mb-2">
       <button
         className="w-full py-3 bg-gray-100 cursor-pointer mt-4 flex items-center justify-center gap-2 rounded-md"
         onClick={handleGoogleLogin}

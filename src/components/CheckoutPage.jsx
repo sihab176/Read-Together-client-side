@@ -224,7 +224,7 @@ export default function CheckoutPage() {
         <div className="flex gap-3 items-center border-b pb-3">
           <img
             src={checkoutBook.images[0]}
-            className="w-16 h-16 object-cover rounded"
+            className="w-18 h-24 object-cover rounded border-5 border-gray-200"
           />
           <div>
             <h3 className="font-medium">{checkoutBook.title}</h3>

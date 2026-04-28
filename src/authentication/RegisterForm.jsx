@@ -2,10 +2,11 @@ import React, { use, useState } from "react";
 import { useForm } from "react-hook-form";
 import { LuEye, LuEyeOff } from "react-icons/lu";
 import { AuthContext } from "../Provider/AuthProvider";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import useAxios from "../hooks/useAxios";
 import Swal from "sweetalert2";
 import GoogleLoing from "../shared/GoogleLoing";
+import authenticationImage from "../assets/authentication.png";
 
 const RegisterForm = () => {
   const [openPassword, setOpenPassword] = useState(false);
@@ -67,9 +68,9 @@ const RegisterForm = () => {
         {/* Left Side */}
         <div className="w-full md:w-1/2 flex justify-center">
           <img
-            src="https://img.freepik.com/free-vector/sign-up-concept-illustration_114360-7885.jpg"
+            src={authenticationImage}
             alt="Sign Up"
-            className="w-full max-w-sm"
+            className="w-full max-w-xl"
           />
         </div>
 
@@ -240,12 +241,16 @@ const RegisterForm = () => {
             {/* Submit */}
             <button
               type="submit"
-              className="w-full bg-[#5D7DB3] text-white py-3 rounded-md"
+              className="w-full gradient-bg text-white py-3 rounded-md"
             >
               Submit
             </button>
           </form>
           <GoogleLoing />
+          <div className="flex items-center gap-2">
+            <h3>Already have an account? </h3>
+            <Link to="/login" className="text-blue-600 underline"> Login</Link>
+          </div>
         </div>
       </div>
     </div>

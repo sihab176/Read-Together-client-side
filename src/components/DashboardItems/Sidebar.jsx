@@ -1,19 +1,27 @@
 import { use } from "react";
 // import { AuthContext } from "../Provider/AuthProvider";
 import { LuLayoutDashboard } from "react-icons/lu";
-import { BiCalendar, BiCheckSquare, BiSolidBarChartAlt2 } from "react-icons/bi";
+import {
+  BiBookOpen,
+  BiCalendar,
+  BiCheckSquare,
+  BiSolidBarChartAlt2,
+} from "react-icons/bi";
+import { MdFavoriteBorder } from "react-icons/md";
 import { FaUserSecret } from "react-icons/fa";
 import { CiSettings } from "react-icons/ci";
 import { FiHelpCircle, FiLogOut } from "react-icons/fi";
+import { Link, NavLink } from "react-router";
 
 const Sidebar = () => {
-//   const { logOutUser } = use(AuthContext);
+  //   const { logOutUser } = use(AuthContext);
   const menuItems = [
-    { icon: <LuLayoutDashboard size={20} />, label: "Dashboard", active: true },
-    { icon: <BiCheckSquare size={20} />, label: "Tasks", badge: "12+" },
-    { icon: <BiCalendar size={20} />, label: "Calendar" },
-    { icon: <BiSolidBarChartAlt2 size={20} />, label: "Analytics" },
-    { icon: <FaUserSecret size={20} />, label: "Team" },
+    { icon: <LuLayoutDashboard size={20} />, label: "Dashboard", path: "/Dashboard" },
+    { icon: <BiCheckSquare size={20} />, label: "My Orders", path: "/Dashboard/my-orders", badge: "12+" },
+    { icon: <BiCalendar size={20} />, label: "Payment History", path: "/Dashboard/payment-history" },
+    { icon: <MdFavoriteBorder size={20} />, label: "Wishlist", path: "/Dashboard/wishlist" },
+    { icon: <BiSolidBarChartAlt2 size={20} />, label: "Analytics", path: "/Dashboard/analytics" },
+    { icon: <FaUserSecret size={20} />, label: "Team", path: "/Dashboard/team" },
   ];
   const handleLogout = () => {
     // logOutUser();
@@ -23,19 +31,23 @@ const Sidebar = () => {
   return (
     <aside className="w-64 lg:block hidden bg-gray-100  p-6 flex flex-col justify-between ">
       <div>
-        <div className="flex items-center gap-2 mb-10">
-          <div className="w-8 h-8 bg-[#1E5128] rounded-full flex items-center justify-center text-white font-bold">
-            D
+        <Link to="/" className="flex items-center gap-2 group mb-8">
+          <div className="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center shadow-md group-hover:scale-105 transition">
+            <BiBookOpen className="w-5 h-5 text-white" />
           </div>
-          <span className="text-xl font-bold">Donezo</span>
-        </div>
+          <span className="text-xl md:text-2xl font-semibold">
+            Book<span className="primary-text">loop</span>
+          </span>
+        </Link>
 
         <nav className="space-y-2">
           <p className="text-xs text-gray-400 uppercase mb-4">Menu</p>
           {menuItems.map((item) => (
-            <div
+            <NavLink
               key={item.label}
-              className={`flex items-center justify-between p-3 rounded-xl cursor-pointer ${item.active ? "bg-[#1E5128] text-white" : "text-gray-500 hover:bg-gray-50"}`}
+               end={item.path === "/Dashboard"}
+              to={item.path}
+              className={({ isActive }) => `flex items-center justify-between p-3 rounded-xl cursor-pointer ${isActive ? "bg-[#1E5128] text-white" : "text-gray-500 hover:bg-gray-50"}`}
             >
               <div className="flex items-center gap-3">
                 {item.icon} <span>{item.label}</span>
@@ -45,7 +57,7 @@ const Sidebar = () => {
                   {item.badge}
                 </span>
               )}
-            </div>
+            </NavLink>
           ))}
         </nav>
       </div>
