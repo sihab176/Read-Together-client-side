@@ -13,8 +13,6 @@ const BookCard = ({ book }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const axiosInstance = useAxios();
-  console.log("book single", book);
-  // console.log("user", user.email);
   useEffect(() => {
     if (user?.email) {
       axiosInstance.get(`/wishlist/${user?.email}`).then((res) => {

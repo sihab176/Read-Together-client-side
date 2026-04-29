@@ -12,20 +12,52 @@ import { FaUserSecret } from "react-icons/fa";
 import { CiSettings } from "react-icons/ci";
 import { FiHelpCircle, FiLogOut } from "react-icons/fi";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Sidebar = () => {
-  //   const { logOutUser } = use(AuthContext);
+  const { logOutUser } = use(AuthContext);
   const menuItems = [
-    { icon: <LuLayoutDashboard size={20} />, label: "Dashboard", path: "/Dashboard" },
-    { icon: <BiCheckSquare size={20} />, label: "My Orders", path: "/Dashboard/my-orders", badge: "12+" },
-    { icon: <BiCalendar size={20} />, label: "Payment History", path: "/Dashboard/payment-history" },
-    { icon: <MdFavoriteBorder size={20} />, label: "Wishlist", path: "/Dashboard/wishlist" },
-    { icon: <BiSolidBarChartAlt2 size={20} />, label: "Analytics", path: "/Dashboard/analytics" },
-    { icon: <FaUserSecret size={20} />, label: "Team", path: "/Dashboard/team" },
+    {
+      icon: <LuLayoutDashboard size={20} />,
+      label: "Dashboard",
+      path: "/Dashboard",
+    },
+    {
+      icon: <BiCheckSquare size={20} />,
+      label: "My Orders",
+      path: "/Dashboard/my-orders",
+      badge: "12+",
+    },
+    {
+      icon: <BiCalendar size={20} />,
+      label: "Payment History",
+      path: "/Dashboard/payment-history",
+    },
+    {
+      icon: <MdFavoriteBorder size={20} />,
+      label: "Wishlist",
+      path: "/Dashboard/wishlist",
+    },
+    {
+      icon: <BiSolidBarChartAlt2 size={20} />,
+      label: "Analytics",
+      path: "/Dashboard/analytics",
+    },
+    {
+      icon: <FaUserSecret size={20} />,
+      label: "Team",
+      path: "/Dashboard/team",
+    },
   ];
   const handleLogout = () => {
-    // logOutUser();
-    alert("Logged out successfully");
+    logOutUser();
+    Swal.fire({
+      title: "Logged out successfully",
+      icon: "success",
+      showConfirmButton: false,
+      timer: 1500,
+    });
   };
 
   return (
@@ -45,9 +77,11 @@ const Sidebar = () => {
           {menuItems.map((item) => (
             <NavLink
               key={item.label}
-               end={item.path === "/Dashboard"}
+              end={item.path === "/Dashboard"}
               to={item.path}
-              className={({ isActive }) => `flex items-center justify-between p-3 rounded-xl cursor-pointer ${isActive ? "bg-[#1E5128] text-white" : "text-gray-500 hover:bg-gray-50"}`}
+              className={({ isActive }) =>
+                `flex items-center justify-between p-3 rounded-xl cursor-pointer ${isActive ? "bg-[#1E5128] text-white" : "text-gray-500 hover:bg-gray-50"}`
+              }
             >
               <div className="flex items-center gap-3">
                 {item.icon} <span>{item.label}</span>

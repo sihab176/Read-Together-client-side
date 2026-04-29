@@ -25,6 +25,7 @@ const PaymentHistoryPage = () => {
       fetchOrders();
     }
   }, [user?.email]);
+  // console.log("payment orders", paymentOrders, user?.email);
 
   return (
     <div className="p-4 md:p-8 bg-slate-50 min-h-screen">
