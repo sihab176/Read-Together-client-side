@@ -10,7 +10,7 @@ import {
 import { MdFavoriteBorder } from "react-icons/md";
 import { FaUserSecret } from "react-icons/fa";
 import { CiSettings } from "react-icons/ci";
-import { FiHelpCircle, FiLogOut } from "react-icons/fi";
+import { FiHelpCircle, FiLogOut, FiUser } from "react-icons/fi";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
@@ -98,9 +98,14 @@ const Sidebar = () => {
 
       <div className="space-y-4">
         <p className="text-xs text-gray-400 uppercase">General</p>
-        <div className="flex items-center gap-3 text-gray-500 p-2 cursor-pointer">
-          <CiSettings size={20} /> Settings
-        </div>
+        <NavLink
+          to="profile"
+          className={({ isActive }) =>
+            `flex items-center gap-3 p-3 rounded-xl cursor-pointer ${isActive ? "bg-[#1E5128] text-white" : "text-gray-500 hover:bg-gray-50"}`
+          }
+        >
+          <FiUser size={20} /> Profile
+        </NavLink>
         <div className="flex items-center gap-3 text-gray-500 p-2 cursor-pointer">
           <FiHelpCircle size={20} /> Help
         </div>

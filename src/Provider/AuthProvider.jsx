@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 import React, { createContext, useEffect, useState } from "react";
 import { auth } from "../firebase/firebase";
+import axios from "axios";
 
 // ==============Auth context and provider================>
 export const AuthContext = createContext();
@@ -46,6 +47,22 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
+      //TODO :_________ validate user data send to server____________
+      if (currentUser?.email) {
+        const userData = { email: currentUser?.email };
+        console.log("user Data", userData);
+
+        axios
+          .post("http://localhost:3000/jwt", userData, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log("res", res);
+          })
+          .catch((err) => {
+            console.log("err", err);
+          });
+      }
       setLoader(false);
     });
     return () => {

@@ -1,5 +1,6 @@
 import { BiBell, BiCommand, BiSearch } from "react-icons/bi";
 import { BsMailbox } from "react-icons/bs";
+import { FaCommentDots } from "react-icons/fa";
 
 const Topbar = () => {
   return (
@@ -26,7 +27,7 @@ const Topbar = () => {
         {/* Icon Buttons */}
         <div className="flex items-center gap-2">
           <button className="p-2.5 bg-white border border-gray-100 rounded-full text-gray-500 hover:bg-gray-50 transition-colors shadow-sm relative">
-            <BsMailbox size={20} />
+            <FaCommentDots size={20} />
             <span className="absolute top-2 right-2.5 w-2 h-2 bg-red-500 border-2 border-white rounded-full"></span>
           </button>
           <button className="p-2.5 bg-white border border-gray-100 rounded-full text-gray-500 hover:bg-gray-50 transition-colors shadow-sm relative">

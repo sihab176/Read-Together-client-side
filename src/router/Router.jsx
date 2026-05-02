@@ -11,6 +11,7 @@ import PaymentSuccess from "../components/PaymentSuccess";
 import MyOrders from "../Pages/DashBoard/MyOrders";
 import PaymentHistoryPage from "../Pages/DashBoard/PaymentHistoryPage";
 import WishlistPage from "../Pages/DashBoard/WishlistPage";
+import ProfilePage from "../Pages/DashBoard/ProfilePage";
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
       {
         path: "wishlist",
         Component: WishlistPage,
+      },
+      {
+        path: "profile",
+        Component: ProfilePage,
       },
     ],
   },
