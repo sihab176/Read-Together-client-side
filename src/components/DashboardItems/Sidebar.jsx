@@ -39,16 +39,16 @@ const Sidebar = () => {
       label: "Wishlist",
       path: "/Dashboard/wishlist",
     },
-    {
-      icon: <BiSolidBarChartAlt2 size={20} />,
-      label: "Analytics",
-      path: "/Dashboard/analytics",
-    },
-    {
-      icon: <FaUserSecret size={20} />,
-      label: "Team",
-      path: "/Dashboard/team",
-    },
+    // {
+    //   icon: <BiSolidBarChartAlt2 size={20} />,
+    //   label: "Analytics",
+    //   path: "/Dashboard/analytics",
+    // },
+    // {
+    //   icon: <FaUserSecret size={20} />,
+    //   label: "Team",
+    //   path: "/Dashboard/team",
+    // },
   ];
   const handleLogout = () => {
     logOutUser();

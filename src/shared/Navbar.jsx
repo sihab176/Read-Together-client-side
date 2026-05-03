@@ -9,14 +9,14 @@ const links = [
   { label: "Home", href: "/" },
   { label: "Dashboard", href: "/Dashboard" },
   { label: "Categories", href: "#categories" },
-  { label: "How it Works", href: "#how" },
+  { label: "Help & Support", href: "/help-support" },
 ];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const {user} = useAuth();
-  console.log("user", user);
+  // console.log("user", user);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);

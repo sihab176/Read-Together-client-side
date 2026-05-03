@@ -4,6 +4,8 @@ import useAxios from "../../hooks/useAxios";
 import { BiLocationPlus } from "react-icons/bi";
 import ReviewSection from "../../components/ReviewSection";
 import BookCarousel from "../../components/BookCarousel";
+import { addRecentBook } from "../../utils/recentBooksStorage";
+import useAuth from "../../hooks/useAuth";
 
 const BookCover = ({ book, size = "large" }) => {
   const isLarge = size === "large";
@@ -29,12 +31,13 @@ export default function BookDetailsPage() {
   const axiosInstance = useAxios();
   const { id } = useParams();
   const navigete = useNavigate();
-  console.log("id", id);
+  const user = useAuth();
+  console.log("user -->", user?.user?.email);
+  //TODO :  GET BOOKS __________________||
   useEffect(() => {
     const fetchBook = async () => {
       try {
         const res = await axiosInstance.get(`/books/${id}`);
-        console.log("res", res); // id dynamic করলে আরো ভালো
         setBook(res.data);
       } catch (error) {
         console.log(error);
@@ -43,13 +46,32 @@ export default function BookDetailsPage() {
 
     fetchBook();
   }, [id]);
-  // console.log("book", book);
+
+  //TODO : VIEWED RECENT BOOK __________||
+  useEffect(() => {
+    const viewedBook = {
+      id: book?._id,
+      title: book?.title,
+      author: book?.author,
+      image: book?.images?.[0],
+      category: book?.category,
+      price: book?.pricing?.basePrice,
+      description: book?.bookDetails?.conditionDescription,
+      viewedAt: new Date().toISOString(),
+    };
+    if (viewedBook) {
+      addRecentBook(viewedBook, user?.user?.email);
+    }
+    // console.log("viewedBook", viewedBook, user?.user?.email);
+  }, [book]);
+
   if (!book) return <p className="text-center mt-10">Loading...</p>;
 
   const handleBuy = () => {
     // console.log("Buy now");
     navigete(`/checkout/${id}`);
   };
+  console.log("test book", book);
 
   return (
     <>
@@ -167,7 +189,10 @@ export default function BookDetailsPage() {
           <div className="flex flex-row lg:flex-col gap-4 px-4 py-6 bg-gray-100 overflow-x-auto lg:overflow-x-hidden min-w-[90px] items-center border-t lg:border-t-0 border-gray-100">
             {book.images?.map((img, i) => (
               <div key={i} className="w-16 h-22">
-                <img src={img} className="w-full h-full object-cover rounded border-6 border-white cursor-pointer" />
+                <img
+                  src={img}
+                  className="w-full h-full object-cover rounded border-6 border-white cursor-pointer"
+                />
               </div>
             ))}
           </div>

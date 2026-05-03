@@ -12,6 +12,7 @@ import MyOrders from "../Pages/DashBoard/MyOrders";
 import PaymentHistoryPage from "../Pages/DashBoard/PaymentHistoryPage";
 import WishlistPage from "../Pages/DashBoard/WishlistPage";
 import ProfilePage from "../Pages/DashBoard/ProfilePage";
+import HelpSupport from "../Pages/HelpSupport/HelpSupport";
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +28,7 @@ export const router = createBrowserRouter([
       { path: "success", Component: PaymentSuccess },
       { path: "/login", Component: LoginPage },
       { path: "/register", Component: RegisterPage },
+      { path: "/help-support", Component: HelpSupport },
     ],
   },
   {
