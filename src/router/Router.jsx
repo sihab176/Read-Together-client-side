@@ -13,6 +13,7 @@ import PaymentHistoryPage from "../Pages/DashBoard/PaymentHistoryPage";
 import WishlistPage from "../Pages/DashBoard/WishlistPage";
 import ProfilePage from "../Pages/DashBoard/ProfilePage";
 import HelpSupport from "../Pages/HelpSupport/HelpSupport";
+import BookHistory from "../Pages/BookHistroy/BookHistory";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +30,7 @@ export const router = createBrowserRouter([
       { path: "/login", Component: LoginPage },
       { path: "/register", Component: RegisterPage },
       { path: "/help-support", Component: HelpSupport },
+      { path: "/book-history", Component: BookHistory },
     ],
   },
   {

@@ -50,7 +50,7 @@ const AuthProvider = ({ children }) => {
       //TODO :_________ validate user data send to server____________
       if (currentUser?.email) {
         const userData = { email: currentUser?.email };
-        console.log("user Data", userData);
+        // console.log("user Data", userData);
 
         axios
           .post("http://localhost:3000/jwt", userData, {

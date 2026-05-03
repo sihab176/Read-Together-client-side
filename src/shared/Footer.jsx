@@ -2,11 +2,11 @@ import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="primary py-12 px-4">
+    <footer className="bg-[#02362d] py-12 px-4">
       <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-6">
         
         {/* Left Section */}
-        <div className="border border-white/30 rounded-2xl p-6 backdrop-blur-md bg-white/20">
+        <div className="border border-white/30 text-white rounded-2xl p-6 backdrop-blur-md bg-white/20">
           <div className="space-y-3 text-sm ">
             <p>🌐 www.Thereaders.com</p>
             <p>📍 B-502 Safal Pegasus, Ahmedabad</p>
@@ -31,7 +31,7 @@ const Footer = () => {
         </div>
 
         {/* Middle Section */}
-        <div className="border border-white/30 rounded-2xl p-6 backdrop-blur-md bg-white/20 grid grid-cols-3 gap-4 text-sm">
+        <div className="border border-white/30 rounded-2xl text-white p-6 backdrop-blur-md bg-white/20 grid grid-cols-3 gap-4 text-sm">
           
           <div>
             <h4 className="font-semibold mb-3 ">About Us</h4>
@@ -68,7 +68,7 @@ const Footer = () => {
         <div className="flex flex-col gap-4">
           
           {/* Newsletter */}
-          <div className="border border-white/30 rounded-2xl p-6 backdrop-blur-md bg-white/20">
+          <div className="border border-white/30 rounded-2xl text-white p-6 backdrop-blur-md bg-white/20">
             <h3 className="text-xl font-semibold mb-4">
               Subscribe to our newsletter!
             </h3>
@@ -86,7 +86,7 @@ const Footer = () => {
           </div>
 
           {/* Payment Icons */}
-          <div className="border border-white/30 rounded-2xl p-4 backdrop-blur-md bg-white/10 flex justify-between items-center text-xs /80">
+          <div className="border border-white/30 rounded-2xl text-white p-4 backdrop-blur-md bg-white/10 flex justify-between items-center text-xs /80">
             <span>Apple Pay</span>
             <span>Visa</span>
             <span>AmEx</span>

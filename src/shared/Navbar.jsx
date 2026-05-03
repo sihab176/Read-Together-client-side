@@ -8,7 +8,7 @@ import { FaUserCircle } from "react-icons/fa";
 const links = [
   { label: "Home", href: "/" },
   { label: "Dashboard", href: "/Dashboard" },
-  { label: "Categories", href: "#categories" },
+  { label: "History", href: "/book-history" },
   { label: "Help & Support", href: "/help-support" },
 ];
 
@@ -30,7 +30,7 @@ const Navbar = () => {
       initial={{ y: -40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 border-b border-gray-200 ${
         scrolled ? "backdrop-blur-md bg-white/20  shadow-lg" : "bg-transparent"
       }`}
     >

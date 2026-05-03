@@ -49,6 +49,7 @@ export default function BookDetailsPage() {
 
   //TODO : VIEWED RECENT BOOK __________||
   useEffect(() => {
+    if (!book?._id) return;
     const viewedBook = {
       id: book?._id,
       title: book?.title,
@@ -60,7 +61,7 @@ export default function BookDetailsPage() {
       viewedAt: new Date().toISOString(),
     };
     if (viewedBook) {
-      addRecentBook(viewedBook, user?.user?.email);
+      addRecentBook(viewedBook, );
     }
     // console.log("viewedBook", viewedBook, user?.user?.email);
   }, [book]);

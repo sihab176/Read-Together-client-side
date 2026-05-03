@@ -3,14 +3,12 @@ import BookCard from "./BookCard";
 import useAxios from "../../hooks/useAxios";
 import BookCarousel from "../BookCarousel";
 
-
 const BookGrid = () => {
   const [booksData, setBooksData] = useState([]);
   const axiosInstance = useAxios();
   useEffect(() => {
     const fetchBooks = async () => {
-      const response = await axiosInstance.get("/books");
-      // console.log("response", response);
+      const response = await axiosInstance.get("/books?limit=8");
       setBooksData(response.data);
     };
     fetchBooks();
@@ -23,7 +21,6 @@ const BookGrid = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {booksData?.map((book) => (
           <BookCard key={book._id} book={book} />
-
         ))}
       </div>
     </div>

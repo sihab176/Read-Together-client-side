@@ -1,10 +1,12 @@
-export const addRecentBook = (book, user) => {
-  const key = user?.email ? `recentBooks_${user.email}` : `recentBooks_guest`;
+export const addRecentBook = (book) => {
+  const key = `recentBooks_guest`;
 
   let recent = JSON.parse(localStorage.getItem(key)) || [];
 
+  console.log("book", book);
   //duplicate
-  recent = recent.filter((item) => item._id !== book._id);
+  recent = recent.filter((item) => item.id !== book.id);
+  console.log("book------>", book);
 
   //add new book
   recent.unshift(book);
@@ -15,5 +17,12 @@ export const addRecentBook = (book, user) => {
   }
 
   //save
-  localStorage.setItem(key, JSON.stringify(recent));
+  if (book) {
+    localStorage.setItem(key, JSON.stringify(recent));
+  }
+};
+
+export const clearRecentBooks = () => {
+  const key = "recentBooks_guest";
+  localStorage.removeItem(key);
 };
