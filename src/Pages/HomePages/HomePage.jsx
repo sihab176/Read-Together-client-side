@@ -5,6 +5,7 @@ import AboutStats from "../../components/LandingPageItems/AboutStats";
 import BookGrid from "../../components/LandingPageItems/BookGrid";
 import WhySection from "../../components/WhySection";
 import BookCarousel from "../../components/BookCarousel";
+import AuthorSection from "../../components/LandingPageItems/AuthorSection";
 
 const HomePage = () => {
   return (
@@ -12,7 +13,8 @@ const HomePage = () => {
       <Hero />
       <AboutStats />
       <BookGrid />
-      <BookCategories />
+      {/* <BookCategories /> */}
+      <AuthorSection />
       <WhySection />
       {/* <BookCarousel /> */}
     </div>
