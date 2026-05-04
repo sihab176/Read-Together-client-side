@@ -37,7 +37,7 @@ const AuthorSection = () => {
   );
 
   return (
-    <div className="bg-white min-h-screen p-10 ">
+    <div className="bg-white min-h-screen lg:p-8 ">
       <div className="text-center mt-10">
         <h5 className="bg-gray-100 rounded-full px-4 py-1 text-sm inline-block text-green-600">
           Author Spotligh
@@ -45,7 +45,7 @@ const AuthorSection = () => {
         <h1 className="text-4xl font-semibold mb-8">Meet the storytellers</h1>
       </div>
       {/* Main Container */}
-      <div className="max-w-7xl mx-auto bg-gray-100  rounded-3xl gap-20 p-8 md:p-12 w-full flex flex-col md:flex-row items-center  ">
+      <div className=" bg-gray-100  rounded-3xl gap-20 p-8 lg:p-12 w-full flex flex-col md:flex-row items-center  ">
         {/* Author Image Wrapper */}
         <div className="relative group w-full md:w-1/2 max-w-[450px]">
           <div className="overflow-hidden rounded-[35px] shadow-2xl">

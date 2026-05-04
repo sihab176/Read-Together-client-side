@@ -7,12 +7,10 @@ import FAQAndForm from "./FAQAndForm";
 const HelpSupport = () => {
   return (
     <div className="min-h-screen bg-[#fcfdfd] py-16 px-4 md:px-8">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center p-3 bg-emerald-100 rounded-2xl mb-4 text-emerald-600">
-            <FaHandsHelping size={32} />
-          </div>
+        <div className="text-center mb-16 mt-16">
+ 
           <h1 className="text-4xl font-extrabold text-gray-900 mb-4">
             Help & Support
           </h1>

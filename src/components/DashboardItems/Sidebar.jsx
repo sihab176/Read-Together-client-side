@@ -1,19 +1,12 @@
 import { use } from "react";
-// import { AuthContext } from "../Provider/AuthProvider";
 import { LuLayoutDashboard } from "react-icons/lu";
-import {
-  BiBookOpen,
-  BiCalendar,
-  BiCheckSquare,
-  BiSolidBarChartAlt2,
-} from "react-icons/bi";
+import { BiBookOpen, BiCalendar, BiCheckSquare } from "react-icons/bi";
 import { MdFavoriteBorder } from "react-icons/md";
-import { FaUserSecret } from "react-icons/fa";
-import { CiSettings } from "react-icons/ci";
 import { FiHelpCircle, FiLogOut, FiUser } from "react-icons/fi";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import bottomImage from "../../../src/assets/sidebarImge.png";
 
 const Sidebar = () => {
   const { logOutUser } = use(AuthContext);
@@ -39,16 +32,6 @@ const Sidebar = () => {
       label: "Wishlist",
       path: "/Dashboard/wishlist",
     },
-    // {
-    //   icon: <BiSolidBarChartAlt2 size={20} />,
-    //   label: "Analytics",
-    //   path: "/Dashboard/analytics",
-    // },
-    // {
-    //   icon: <FaUserSecret size={20} />,
-    //   label: "Team",
-    //   path: "/Dashboard/team",
-    // },
   ];
   const handleLogout = () => {
     logOutUser();
@@ -59,9 +42,10 @@ const Sidebar = () => {
       timer: 1500,
     });
   };
+  console.log("image",bottomImage)
 
   return (
-    <aside className="w-64 lg:block hidden bg-gray-100  p-6 flex flex-col justify-between ">
+    <aside className="w-64 lg:block hidden h-screen bg-gray-100  p-6 flex flex-col justify-between ">
       <div>
         <Link to="/" className="flex items-center gap-2 group mb-8">
           <div className="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center shadow-md group-hover:scale-105 transition">
@@ -96,8 +80,8 @@ const Sidebar = () => {
         </nav>
       </div>
 
-      <div className="space-y-4">
-        <p className="text-xs text-gray-400 uppercase">General</p>
+      <div className="space-y-4 ">
+        <p className="text-xs text-gray-400 uppercase mt-6">General</p>
         <NavLink
           to="profile"
           className={({ isActive }) =>
@@ -106,9 +90,14 @@ const Sidebar = () => {
         >
           <FiUser size={20} /> Profile
         </NavLink>
-        <div className="flex items-center gap-3 text-gray-500 p-2 cursor-pointer">
-          <FiHelpCircle size={20} /> Help
-        </div>
+        <NavLink
+          to="asked-question"
+          className={({ isActive }) =>
+            `flex items-center gap-3 p-3 rounded-xl cursor-pointer ${isActive ? "bg-[#1E5128] text-white" : "text-gray-500 hover:bg-gray-50"}`
+          }
+        >
+          <FiHelpCircle size={20} /> FAQ
+        </NavLink>
         <button
           onClick={handleLogout}
           className="flex items-center gap-3 w-full text-red-500 py-2 px-3 cursor-pointer hover:bg-red-400 hover:text-white rounded-lg"
@@ -117,8 +106,8 @@ const Sidebar = () => {
         </button>
 
         {/* Ad Box */}
-        <div className="bg-[url('/sidebarImge.png')] bg-cover bg-center rounded-2xl p-6 text-white mt-2">
-          <p className="text-sm mb-4">Download our Mobile App</p>
+        <div className={`bg-[url('https://i.ibb.co.com/Z6cSm2qW/sidebar-Imge.png')] bg-cover bg-center rounded-2xl p-6 text-white mt-2`}>
+          <p className="text-sm ">Download our Mobile App</p>
           <button className="bg-[#1E5128] w-full py-2 rounded-lg text-xs">
             Download
           </button>

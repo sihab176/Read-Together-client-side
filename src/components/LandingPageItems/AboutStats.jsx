@@ -68,7 +68,7 @@ const AboutStats = () => {
         </p>
 
         {/* Cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-5 mt-12">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 md:grid-cols-4 gap-5 mt-12">
           {categories.map((cat, i) => {
             const Icon = cat.icon;
             return (

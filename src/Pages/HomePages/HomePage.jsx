@@ -16,8 +16,9 @@ const HomePage = () => {
       <BookGrid />
       {/* <BookCategories /> */}
       <AuthorSection />
-      <WhySection />
       <SummerReadingSale />
+      <WhySection />
+      
       {/* <BookCarousel /> */}
     </div>
   );

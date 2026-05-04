@@ -14,6 +14,7 @@ import WishlistPage from "../Pages/DashBoard/WishlistPage";
 import ProfilePage from "../Pages/DashBoard/ProfilePage";
 import HelpSupport from "../Pages/HelpSupport/HelpSupport";
 import BookHistory from "../Pages/BookHistroy/BookHistory";
+import AskedQuestion from "../Pages/DashBoard/AskedQuestion";
 
 export const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ export const router = createBrowserRouter([
       {
         path: "wishlist",
         Component: WishlistPage,
+      },
+      {
+        path: "asked-question",
+        Component: AskedQuestion,
       },
       {
         path: "profile",
