@@ -99,7 +99,7 @@ const TrendingBooks = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axiosInstance.get(`/all-books?sort=1&limit=5`);
+        const response = await axiosInstance.get(`/all-books?sort=1&limit=8`);
         console.log({ response });
         setBooksData(response.data.books);
       } catch (error) {

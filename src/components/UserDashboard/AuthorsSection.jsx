@@ -33,8 +33,8 @@ const AuthorsSection = () => {
   return (
     <div className="p-8 bg-white shadow-lg rounded-3xl border border-neutral-100">
       <div className="flex items-center justify-between mb-8">
-        <h2 className="text-2xl font-bold text-neutral-900">Authors</h2>
-        <button className="text-sm font-semibold text-green-600 hover:text-green-700">
+        <h2 className="text-xl font-bold text-neutral-900">Authors</h2>
+        <button className="text-sm font-semibold text-green-700 hover:text-green-800 underline">
           See More
         </button>
       </div>
@@ -47,10 +47,10 @@ const AuthorsSection = () => {
               className="w-12 h-12 rounded-full"
             />
             <div>
-              <p className="font-semibold text-neutral-900">
+              <p className="font-semibold text-sm text-neutral-900">
                 {author.name}
               </p>
-              <p className="text-sm text-neutral-500">
+              <p className="text-[11px] text-neutral-500">
                 {author.books} books • {author.reads} reads
               </p>
             </div>

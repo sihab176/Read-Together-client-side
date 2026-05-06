@@ -44,7 +44,7 @@ const freeBooks = [
 ];
 const FreeBooksSection = () => {
   return (
-    <div className="p-5 bg-white shadow-lg rounded-3xl border border-neutral-100">
+    <div className="p-4 bg-white shadow-lg rounded-3xl border border-neutral-100">
       <div className="flex items-center justify-between mb-8">
         <h2 className="text-2xl font-bold text-neutral-900">Free Books</h2>
         <button className="text-sm font-semibold text-green-600 hover:text-green-700">

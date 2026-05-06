@@ -1,88 +1,90 @@
-import { FiFilter } from "react-icons/fi";
-const bestPopularBooks = [
-  {
-    id: 1,
-    title: "Lagi Probation",
-    author: "Samuel Ray",
-    price: "452.00",
-    cover:
-      "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1614915647i/57303030.jpg",
-    authorImg: "https://randomuser.me/api/portraits/men/5.jpg",
-  },
-  {
-    id: 2,
-    title: "Sunset & Rosie",
-    author: "Tere Liye",
-    price: "158.00",
-    cover:
-      "https://upload.wikimedia.org/wikipedia/id/8/87/Sampul_Sunset_Bersama_Rosie.jpg",
-    authorImg: "https://randomuser.me/api/portraits/men/6.jpg",
-  },
-  {
-    id: 3,
-    title: "Laut Bercerita",
-    author: "Sayaka Murata",
-    price: "325.00",
-    cover:
-      "https://gramediaweb.azureedge.net/assets/uploads/products/9786230006248_Laut-Bercerita_500.jpg",
-    authorImg: "https://randomuser.me/api/portraits/women/7.jpg",
-  },
-  {
-    id: 4,
-    title: "Segi Tiga",
-    author: "Sapardi Amono",
-    price: "159.00",
-    cover:
-      "https://gramediaweb.azureedge.net/assets/uploads/products/9786230007818_Segi-Tiga-Sapardi-Djoko-Damono_C_500.jpg",
-    authorImg: "https://randomuser.me/api/portraits/men/8.jpg",
-  },
-];
+
+import { useEffect, useState } from "react";
+import useAxios from "../../hooks/useAxios";
+import { IoStarSharp } from "react-icons/io5";
+import { BsEye } from "react-icons/bs";
+import { useNavigate } from "react-router";
+
+
 const BestPopularSection = () => {
+  const [booksData, setBooksData] = useState([]);
+  const axiosInstance = useAxios();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        const response = await axiosInstance.get("/books?limit=8"); // ✅ only 4 বই
+        setBooksData(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchBooks();
+  }, [axiosInstance]);
+
   return (
-    <div className="p-8 bg-white shadow-lg rounded-3xl border border-neutral-100">
-      <div className="flex items-center justify-between mb-10">
-        <h2 className="text-2xl font-bold text-neutral-900">Best Popular</h2>
-        <button className="flex items-center gap-2 px-5 py-2.5 font-medium text-green-600 transition duration-150 bg-green-50 rounded-xl hover:bg-green-100">
-          <FiFilter className="w-5 h-5" />
-          Filter
-        </button>
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4  ">
-        {bestPopularBooks.map((book) => (
-          <div key={book.id} className="flex flex-col ">
-            <div className="flex items-center justify-center mb-2 p-2 rounded-3xl h-[150px] bg-green-50 border border-green-100">
+    <div className="max-w-7xl mx-auto ">
+      {/* ✅ GRID layout → no scrollbar */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-1">
+        
+        {booksData?.slice(0, 8).map((b, i) => (
+          <div
+            key={b._id || i}
+            className="group rounded-3xl bg-card p-4 transition-all duration-500 hover:-translate-y-2 shadow-xl hover:shadow-2xl"
+          >
+            {/* IMAGE */}
+            <div className="relative h-[200px] rounded-2xl overflow-hidden">
+              
               <img
-                src={book.cover}
-                alt={book.title}
-                className="object-contain w-full h-full shadow-lg rounded-lg"
+                src={b?.images?.[0] || "https://via.placeholder.com/200"}
+                alt={b?.title}
+                className="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110"
               />
+
+              {/* overlay */}
+              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition"></div>
+
+              {/* ✅ TOP LEFT BADGE */}
+              <span className="absolute top-3 left-3 text-xs font-semibold px-3 py-1 rounded-full bg-gray-200 text-gray-800 shadow">
+                🔥 Trending
+              </span>
+
+              {/* hover button */}
+              <button
+                onClick={() => navigate(`/bookDetails/${b._id}`)}
+                className="absolute left-1/2 -translate-x-1/2 bottom-4 translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 bg-white text-black rounded-full px-4 py-2 text-[11px] whitespace-nowrap font-semibold flex items-center gap-2 shadow"
+              >
+                <BsEye /> Quick View
+              </button>
             </div>
-            {/* Content details matching alignment */}
-            <p className="mb-2 text-xl font-semibold text-neutral-900">
-              {book.title}
-            </p>
-            <div className="flex items-center gap-3 mb-4">
-              <img
-                src={book.authorImg}
-                alt={book.author}
-                className="w-8 h-8 rounded-full"
-              />
-              <p className="text-sm font-medium text-neutral-600">
-                {book.author}
+
+            {/* INFO */}
+            <div className="pt-4">
+              <h3 className="font-semibold">{b?.title}</h3>
+
+              <p className="text-sm text-gray-500">
+                {b?.author || "Unknown Author"}
               </p>
+
+              <div className="flex items-center justify-between mt-3">
+                <div className="flex gap-1 text-amber-500">
+                  {Array.from({ length: 5 }).map((_, k) => (
+                    <IoStarSharp key={k} className="h-3.5 w-3.5" />
+                  ))}
+                </div>
+
+                <span className="font-bold text-green-600">
+                  ${b?.price || "0.00"}
+                </span>
+              </div>
             </div>
-            {/* Green price text */}
-            <p className="mb-6 text-xl font-bold text-green-600">
-              $ {book.price}
-            </p>
-            {/* Green action button */}
-            <button className="w-full py-3.5 mt-auto text-lg font-semibold text-white transition duration-150 rounded-xl bg-green-600 hover:bg-green-700 shadow-[0_5px_15px_rgba(22,163,74,0.2)]">
-              Buy Now
-            </button>
           </div>
         ))}
+
       </div>
     </div>
   );
 };
+
 export default BestPopularSection;
