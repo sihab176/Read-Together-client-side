@@ -15,6 +15,8 @@ import ProfilePage from "../Pages/DashBoard/ProfilePage";
 import HelpSupport from "../Pages/HelpSupport/HelpSupport";
 import BookHistory from "../Pages/BookHistroy/BookHistory";
 import AskedQuestion from "../Pages/DashBoard/AskedQuestion";
+import AllBooks from "../Pages/AllBooks/AllBooks";
+import DynamicUserDashboard from "../Pages/DynamicUserDashboard/DynamicUserDashboard";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +34,7 @@ export const router = createBrowserRouter([
       { path: "/register", Component: RegisterPage },
       { path: "/help-support", Component: HelpSupport },
       { path: "/book-history", Component: BookHistory },
+      { path: "/all-books", Component: AllBooks },
     ],
   },
   {
@@ -40,7 +43,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        Component: AddBookForm,
+        Component: DynamicUserDashboard,
       },
       {
         path: "my-orders",

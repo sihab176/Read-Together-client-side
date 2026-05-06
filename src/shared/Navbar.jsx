@@ -10,6 +10,7 @@ const links = [
   { label: "Dashboard", href: "/Dashboard" },
   { label: "History", href: "/book-history" },
   { label: "Help & Support", href: "/help-support" },
+  { label: "All Books", href: "/all-books" },
 ];
 
 const Navbar = () => {

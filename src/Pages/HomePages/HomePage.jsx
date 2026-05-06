@@ -7,6 +7,7 @@ import WhySection from "../../components/WhySection";
 import BookCarousel from "../../components/BookCarousel";
 import AuthorSection from "../../components/LandingPageItems/AuthorSection";
 import SummerReadingSale from "../../components/LandingPageItems/SummerReadingSale";
+import TrendingBooks from "../../components/LandingPageItems/TrendingBooks";
 
 const HomePage = () => {
   return (
@@ -16,7 +17,8 @@ const HomePage = () => {
       <BookGrid />
       {/* <BookCategories /> */}
       <AuthorSection />
-      <SummerReadingSale />
+      <TrendingBooks />
+      {/* <SummerReadingSale /> */}
       <WhySection />
       
       {/* <BookCarousel /> */}
