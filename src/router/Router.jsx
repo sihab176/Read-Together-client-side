@@ -65,6 +65,11 @@ export const router = createBrowserRouter([
         path: "profile",
         Component: ProfilePage,
       },
+      // TODO  : SELLER ROUTE ________________
+      {
+        path: "addbook",
+        Component: AddBookForm,
+      },
     ],
   },
 ]);

@@ -100,7 +100,7 @@ const TrendingBooks = () => {
     const fetchBooks = async () => {
       try {
         const response = await axiosInstance.get(`/all-books?sort=1&limit=8`);
-        console.log({ response });
+        // console.log({ response });
         setBooksData(response.data.books);
       } catch (error) {
         console.error("Error fetching books:", error);
@@ -109,7 +109,7 @@ const TrendingBooks = () => {
 
     fetchBooks();
   }, [axiosInstance]); // ✅ dependency add করা হয়েছে
-  console.log("book data", booksData);
+  // console.log("book data", booksData);
   return (
     <section className="relative py-24 overflow-hidden max-w-7xl mx-auto">
       <div className="absolute inset-0 -z-0 opacity-50 bg-[radial-gradient(circle_at_20%_20%,hsl(var(--brand)/0.15),transparent_50%),radial-gradient(circle_at_80%_60%,hsl(var(--brand-2)/0.15),transparent_50%)]" />

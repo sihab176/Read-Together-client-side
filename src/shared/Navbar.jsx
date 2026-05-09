@@ -59,7 +59,7 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Desktop Buttons */}
+        {/* USER Profile Button */}
         <div className="hidden md:flex items-center gap-3">
           {user ? (
             <FaUserCircle size={34} className="text-green-700"/>
@@ -104,7 +104,7 @@ const Navbar = () => {
           ))}
 
           <div className="flex gap-2 pt-2">
-            <button className="flex-1 py-2 rounded-full hover:bg-gray-100 transition">
+            <button className="flex-1 py-2 bg-gray-300 rounded-full hover:bg-gray-200 transition">
               Login
             </button>
             {/* <button className="flex-1 py-2 rounded-full bg-indigo-600 text-white">

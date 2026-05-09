@@ -22,6 +22,7 @@ const BestPopularSection = () => {
     };
     fetchBooks();
   }, [axiosInstance]);
+  // console.log(booksData)
 
   return (
     <div className="max-w-7xl mx-auto ">
@@ -75,7 +76,7 @@ const BestPopularSection = () => {
                 </div>
 
                 <span className="font-bold text-green-600">
-                  ${b?.price || "0.00"}
+                  ${b?.pricing?.basePrice || "0.00"}
                 </span>
               </div>
             </div>

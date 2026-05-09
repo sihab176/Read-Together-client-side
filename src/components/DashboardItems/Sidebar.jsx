@@ -18,6 +18,12 @@ const Sidebar = () => {
     },
     {
       icon: <BiCheckSquare size={20} />,
+      label: "Add Book",
+      path: "/Dashboard/addbook",
+      badge: "12+",
+    },
+    {
+      icon: <BiCheckSquare size={20} />,
       label: "My Orders",
       path: "/Dashboard/my-orders",
       badge: "12+",

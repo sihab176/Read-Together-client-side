@@ -14,7 +14,7 @@ const BookGrid = () => {
     fetchBooks();
   }, []);
 
-  // console.log("book", booksData);
+  console.log("book", booksData);
 
   return (
     <div className=" min-h-screen md:p-10 p-4 bg-gray-50">
